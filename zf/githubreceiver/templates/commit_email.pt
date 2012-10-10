@@ -1,0 +1,15 @@
+Repository: ${push.repository.name}
+Branch: ${push.ref}
+Date: ${commit.timestamp}
+Pushed by: ${push.pusher.name} <${push.pusher.email}>
+Authored by: ${commit.author.name} (${commit.author.get('username')}) <${commit.author.email}>
+Commit: ${commit.url}
+<tal:block condition="commitwarning|nothing"> 
+  *** ${commitwarning} *** 
+</tal:block>
+${commit.message}
+
+Files changed:
+${files}
+
+${structure: diff}
