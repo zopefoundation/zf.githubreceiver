@@ -6,3 +6,4 @@ parts/
 src/
 *.egg-info
 *.pyc
+*.swp
