@@ -88,3 +88,17 @@ def send_email(push, commit, request):
     
     mailer.send(msg)
 
+    if push['pusher']['email'] != commit['author']['email']:
+        # Warn the committer - he may not be aware of the commit
+        msg = Message(
+            subject = '%s/%s: %s' % ( repository
+                                    , push['ref'].split('/')[-1]
+                                    , short_commit_msg
+                                    ),
+            sender="Zope Foundation <contributor-admin@zope.org>",
+            recipients = [commit['author']['email']],
+            body = TMPLS['committer_warning.pt'](**data),
+            )
+        
+        mailer.send(msg)
+
