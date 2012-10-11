@@ -1,5 +1,9 @@
 from pyramid.config import Configurator
-from zf.githubreceiver.resources import Root
+
+
+class Root(object):
+    def __init__(self, request):
+            self.request = request
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
