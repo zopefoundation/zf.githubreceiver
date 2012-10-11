@@ -4,6 +4,7 @@ from githubevent.events import Push
 from pyramid.events import subscriber
 
 from zf.githubreceiver.commit_email import send_email
+from zf.githubreceiver.commit_log import log_push
 
 
 logger = logging.getLogger('githubreceiver')
@@ -12,7 +13,8 @@ logger = logging.getLogger('githubreceiver')
 @subscriber(Push)
 def handle_push(event):
     push = event.request.json_body
-    logger.info(push)
+
+    log_push(event.request)
 
     if len(push['commits']) > 40:
         # safeguard against github getting confused and sending us 
