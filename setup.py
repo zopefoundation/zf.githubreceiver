@@ -7,9 +7,7 @@ README = open(os.path.join(here, 'README.txt')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 VERSION = open(os.path.join(here, 'VERSION.txt')).read()
 
-requires = ['pyramid', 'pyramid_mailer', 'pyramid_tm', 'github.event', 'requests']
-
-setup(name='zf.githubreceiver',
+requires = setup(name='zf.githubreceiver',
       version=VERSION.strip(),
       description='zf.githubreceiver',
       long_description=README + '\n\n' +  CHANGES,
@@ -23,12 +21,17 @@ setup(name='zf.githubreceiver',
       author_email='',
       url='',
       keywords='web pyramid pylons',
-      namespace_packages=('zf',)
+      namespace_packages=('zf',),
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
-      install_requires=requires,
-      tests_require=requires,
+      install_requires=[ 'setuptools'
+                       , 'pyramid'
+                       , 'pyramid_mailer'
+                       , 'pyramid_tm'
+                       , 'github.event'
+                       , 'requests'
+                       ],
       test_suite="zf.githubreceiver",
       entry_points = """\
       [paste.app_factory]
