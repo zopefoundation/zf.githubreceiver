@@ -1,0 +1,11 @@
+To do list for zf.githubreceiver
+================================
+
+[ ] add checking of commit author email to make sure only signed 
+    contributor code ends up in the repository
+
+[ ] mark up or deny commits from non-contributors
+
+[ ] (optional) hook to kick off a 'git pull' for a project's 
+    backup Git repository on a ZF server
+
