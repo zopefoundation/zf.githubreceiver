@@ -48,8 +48,9 @@ def send_email(push, commit, request):
     settings = request.registry.settings
     commitwarning = None
     repository = push['repository']['name']
+    pusher_email = push['pusher'].get('email', '')
 
-    if push['pusher']['email'] != commit['author']['email']:
+    if pusher_email != commit['author']['email']:
         # Pusher != Committer, do stuff
         commitwarning = 'Code author and pusher do not match!'
 
@@ -67,6 +68,7 @@ def send_email(push, commit, request):
         'files': '\n'.join(files),
         'diff': diff,
         'commitwarning': commitwarning,
+        'pusher_email': pusher_email
     }
 
     recipients = ["%s" % settings['recipient_email']]
@@ -88,7 +90,7 @@ def send_email(push, commit, request):
     
     mailer.send(msg)
 
-    if push['pusher']['email'] != commit['author']['email']:
+    if pusher_email != commit['author']['email']:
         # Warn the committer - he may not be aware of the commit
         msg = Message(
             subject = '%s/%s: %s' % ( repository

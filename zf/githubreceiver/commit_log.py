@@ -31,7 +31,7 @@ def log_push(request):
     push_data = ( push['repository']['name']
                 , push['ref'].split('/')[-1]
                 , push['pusher']['name']
-                , push['pusher']['email']
+                , push['pusher'].get('email', 'unknown email')
                 , [x['id'] for x in commits]
                 )
     logger.info(push_msg % push_data)
@@ -43,7 +43,7 @@ def log_push(request):
                       , commit['url']
                       )
 
-        if commit['author']['email'] != push['pusher']['email']:
+        if commit['author']['email'] != push['pusher'].get('email'):
             logger.warn(commit_msg % commit_data)
         else:
             logger.info(commit_msg % commit_data)

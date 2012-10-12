@@ -1,6 +1,6 @@
 Dear ${commit.author.name},
 
-${push.pusher.name} (${push.pusher.email}) just pushed a Git commit 
+${push.pusher.name} (${pusher_email}) just pushed a Git commit 
 with your name showing as author. If you did not author the code 
 shown below please reply to this message.
 
@@ -12,7 +12,7 @@ The Zope Foundation contributor committee (contributor-admin@zope.org)
 Repository: ${push.repository.name}
 Branch: ${push.ref}
 Date: ${commit.timestamp}
-Pushed by: ${push.pusher.name} <${push.pusher.email}>
+Pushed by: ${push.pusher.name} <${pusher_email}>
 Authored by: ${commit.author.name} (${commit.author.get('username')}) <${commit.author.email}>
 Commit: ${commit.url}
 

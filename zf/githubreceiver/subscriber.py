@@ -28,6 +28,12 @@ logger = logging.getLogger('githubreceiver')
 def handle_push(event):
     push = event.request.json_body
 
+    if ( push['pusher']['name'] == 'none' and
+         push['pusher'].get('email', None) is None ):
+        # Special case: Someone is using the test push hook button
+        logger.info('Web hook test button pressed on GitHub')
+        return
+
     log_push(event.request)
 
     if len(push['commits']) > 40:
