@@ -37,6 +37,5 @@ requires = setup(name='zf.githubreceiver',
       [paste.app_factory]
       main = zf.githubreceiver:main
       """,
-      paster_plugins=['pyramid'],
       )
 
