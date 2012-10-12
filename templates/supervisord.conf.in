@@ -11,6 +11,7 @@ loglevel=info                ; (log level;default info; others: debug,warn,trace
 pidfile=${buildout:directory}/var/supervisord.pid ; (supervisord pidfile;default supervisord.pid)
 nodaemon=false               ; (start in foreground if true;default false)
 directory=${buildout:directory}/var
+childlogdir=${buildout:directory}/var
 
 [rpcinterface:supervisor]
 supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
@@ -26,6 +27,8 @@ history_file=~/.sc_history  ; use readline history if available
 command = ${buildout:directory}/bin/paster serve ${buildout:directory}/development.ini
 process_name = githubreceiver
 startsecs = 5
+stdout_logfile = ${buildout:directory}/var/githubreceiver.log
+stderr_logfile = ${buildout:directory}/var/githubreceiver-error.org
 
 ;[program:theprogramname]
 ;command=/bin/cat              ; the program (relative uses PATH, can take args)

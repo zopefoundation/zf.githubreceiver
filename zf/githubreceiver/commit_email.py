@@ -95,7 +95,7 @@ def send_email(push, commit, request):
                                     , push['ref'].split('/')[-1]
                                     , short_commit_msg
                                     ),
-            sender="Zope Foundation <contributor-admin@zope.org>",
+            sender="Zope Foundation contributor committee <contributor-admin@zope.org>",
             recipients = [commit['author']['email']],
             body = TMPLS['committer_warning.pt'](**data),
             )
